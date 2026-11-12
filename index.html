@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f0f0f">
+  <title>Vid Sort</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #0f0f0f;
+      --surface: #181818;
+      --surface-hover: #222;
+      --text: #f1f1f1;
+      --muted: #aaa;
+      --border: #303030;
+      --accent: #ff0033;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      padding: 18px 24px;
+      background: rgb(15 15 15 / 95%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-inner, main {
+      width: min(100%, 1440px);
+      margin-inline: auto;
+    }
+
+    .brand {
+      margin: 0;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+    }
+
+    .brand span { color: var(--accent); }
+
+    main { padding: 24px; }
+
+    .intro {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .search-form {
+      display: flex;
+      width: min(100%, 680px);
+      gap: 10px;
+      margin-bottom: 26px;
+    }
+
+    .search-form input {
+      min-width: 0;
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid #3f3f3f;
+      border-radius: 24px;
+      outline: none;
+      background: #121212;
+      color: var(--text);
+      font: inherit;
+    }
+
+    .search-form input:focus { border-color: #777; }
+
+    .search-form button {
+      padding: 0 20px;
+      border: 0;
+      border-radius: 20px;
+      background: var(--accent);
+      color: white;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .search-form button:hover { background: #e6002e; }
+
+    .results {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px 18px;
+    }
+
+    .video-card {
+      min-width: 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      transition: background-color 150ms ease, transform 150ms ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-2px);
+      background: var(--surface-hover);
+    }
+
+    .source {
+      padding: 12px 14px 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .thumbnail {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #242424;
+    }
+
+    .card-details { padding: 12px 14px 16px; }
+
+    .title {
+      margin: 0 0 8px;
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .creator {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .results { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 600px) {
+      .topbar { padding: 16px; }
+      main { padding: 18px 16px; }
+      .results { grid-template-columns: 1fr; }
+      .search-form button { padding-inline: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <h1 class="brand">Vid <span>Sort</span></h1>
+    </div>
+  </header>
+
+  <main>
+    <p class="intro">A dark, three-column video discovery layout. These are sample cards; search and provider integrations are not connected yet.</p>
+
+    <form class="search-form" role="search" onsubmit="event.preventDefault()">
+      <input type="search" aria-label="Search videos" placeholder="Search videos">
+      <button type="submit">Search</button>
+    </form>
+
+    <section class="results" aria-label="Sample video results">
+      <article class="video-card">
+        <div class="source">YouTube</div>
+        <img class="thumbnail" src="https://placehold.co/640x360/242424/f1f1f1?text=YouTube+thumbnail" alt="Sample YouTube video thumbnail">
+        <div class="card-details">
+          <h2 class="title">Sample video title</h2>
+          <p class="creator">Sample content creator</p>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="source">Vimeo</div>
+        <img class="thumbnail" src="https://placehold.co/640x360/242424/f1f1f1?text=Vimeo+thumbnail" alt="Sample Vimeo video thumbnail">
+        <div class="card-details">
+          <h2 class="title">Another sample video title</h2>
+          <p class="creator">Sample creator</p>
+        </div>
+      </article>
+
+      <article class="video-card">
+        <div class="source">Dailymotion</div>
+        <img class="thumbnail" src="https://placehold.co/640x360/242424/f1f1f1?text=Dailymotion+thumbnail" alt="Sample Dailymotion video thumbnail">
+        <div class="card-details">
+          <h2 class="title">A third sample video title</h2>
+          <p class="creator">Sample channel</p>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
